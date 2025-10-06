@@ -56,7 +56,5 @@ export const useUserStore=create<UserStore>((set,get)=>({
     }
    },
 }));
-function async(arg0: any): () => Promise<void> {
-    throw new Error('Function not implemented.');
-}
+
 
