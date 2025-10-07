@@ -30,7 +30,11 @@ export const useUserStore=create<UserStore>((set,get)=>({
    addUser:async(user)=>{
     try{
         const newUser=await createUser(user);
-        set({users:[...get().users,newUser]});
+        const existing = get().users;
+        const maxId = existing.length ? Math.max(...existing.map(u => u.id)) : 0;
+        const nextId = maxId + 1;
+        const userWithId = { ...newUser, id: nextId };
+        set({users:[...existing,userWithId]});
     }catch(error){
         set({error:"Failed to add user"});
     }
